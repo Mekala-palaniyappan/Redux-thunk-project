@@ -1,0 +1,73 @@
+.user-container {
+    margin: 80px;
+    display: flex;
+    flex-wrap: wrap;
+}
+#root {
+    height: 100%;
+}
+.loader {
+    height: 100%;
+    margin: auto;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.lists-card {
+    min-height: 300px;
+    margin: 15px;
+    .links {
+        a {
+            text-decoration: underline;
+            display: block;
+        }
+    }
+    .company-details {
+        margin-top: 15px;
+        p {
+            margin-bottom: 0px;
+        }
+    }
+    .action {
+        margin-top: 25px;
+        text-align: center;
+    }
+}
+
+.detail {
+    .header {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        .anticon {
+            font-size: 26px;
+            color: #1890ff;
+            cursor: pointer;
+        }
+    }
+}
+
+.modal-action {
+    text-align: right;
+    button {
+        margin-right: 20px;
+    }
+}
+
+.post-details {
+    width: 100%;
+    .post {
+        border: 1px solid black;
+        padding: 20px;
+        clear: both;
+        .anticon {
+            margin-right: 10px;
+            font-size: 20px;
+            color: #1890ff;
+        }
+        .anticon-right {
+            float: right;
+        }
+    }
+}
