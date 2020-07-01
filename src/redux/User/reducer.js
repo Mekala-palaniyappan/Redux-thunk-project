@@ -115,9 +115,12 @@ export default function userReducer(state = initState, action) {
     }
 
     case actions.ADD_POST_SUCCESS: {
+      let addDetail = state.postDetails;
+      addDetail.push(action.payload);
       return {
         ...state,
         addPostLoading: false,
+        postDetails: addDetail,
       };
     }
 
@@ -182,9 +185,12 @@ export default function userReducer(state = initState, action) {
     }
 
     case actions.ADD_COMMENT_SUCCESS: {
+      let addCommentDetail = state.commentsDetails;
+      addCommentDetail.push(action.payload);
       return {
         ...state,
         addCommentLoader: false,
+        commentsDetails: addCommentDetail,
       };
     }
 

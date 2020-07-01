@@ -57,8 +57,8 @@ export const addPost = (id, values) => dispatch => {
     .then(response => {
       dispatch({
         type: actions.ADD_POST_SUCCESS,
+        payload: values,
       });
-      dispatch(getPost());
       message.success('Post Added Successfully');
     })
     .catch(function(error) {
@@ -177,8 +177,8 @@ export const addComment = (id, values) => dispatch => {
     .then(response => {
       dispatch({
         type: actions.ADD_COMMENT_SUCCESS,
+        payload: values,
       });
-      dispatch(getPost());
       message.success('Comment Added Successfully');
     })
     .catch(function(error) {
