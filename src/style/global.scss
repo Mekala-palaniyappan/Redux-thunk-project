@@ -3,9 +3,15 @@
     display: flex;
     flex-wrap: wrap;
 }
+
+.container {
+    margin: 80px;
+}
+
 #root {
     height: 100%;
 }
+
 .loader {
     height: 100%;
     margin: auto;
@@ -14,6 +20,7 @@
     align-items: center;
     justify-content: center;
 }
+
 .lists-card {
     min-height: 300px;
     margin: 15px;
@@ -68,6 +75,30 @@
         }
         .anticon-right {
             float: right;
+        }
+    }
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.comments {
+    .action {
+        display: flex;
+        justify-content: space-between;
+        p {
+            color: #1890ff;
+        }
+        a, p {
+            text-decoration: underline;
+        }
+    }
+    .comment {
+        border: 2px solid black;
+        padding: 20px;
+        &:not(last-child) {
+            margin-bottom: 15px;
         }
     }
 }
