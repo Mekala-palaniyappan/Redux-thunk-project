@@ -41,10 +41,12 @@ class UserDetails extends Component {
 
   onDelete = id => {
     const { onDelete } = this.props;
+    let removeIds = [];
+    removeIds.push(id);
     this.setState({
       indexId: id,
     });
-    onDelete(id);
+    onDelete(id, removeIds);
   };
 
   render() {
@@ -54,6 +56,7 @@ class UserDetails extends Component {
         deletePostLoading,
         addPostLoading,
         id,
+        removedIds,
       } = this.props,
       { visible, indexId } = this.state;
     return (
@@ -74,29 +77,32 @@ class UserDetails extends Component {
         </div>
         <div className={'post-details'}>
           {postDetails &&
-            postDetails.map((data, index) => (
-              <div className={'post'} key={index}>
-                <span
-                  className={'pointer'}
-                  onClick={() => this.onDelete(data.id)}
-                >
-                  {deletePostLoading && indexId === data.id ? (
-                    <LoaderComponent />
-                  ) : (
-                    <DeleteOutlined />
-                  )}
-                </span>
-                {data.title}
-                <span
-                  className={'pointer'}
-                  onClick={() =>
-                    (window.location.href = `/user/${id}/post/${data.id}`)
-                  }
-                >
-                  <RightOutlined />
-                </span>
-              </div>
-            ))}
+            postDetails.map(
+              (data, index) =>
+                !removedIds.includes(data.id) && (
+                  <div className={'post'} key={index}>
+                    <span
+                      className={'pointer'}
+                      onClick={() => this.onDelete(data.id)}
+                    >
+                      {deletePostLoading && indexId === data.id ? (
+                        <LoaderComponent />
+                      ) : (
+                        <DeleteOutlined />
+                      )}
+                    </span>
+                    {data.title}
+                    <span
+                      className={'pointer'}
+                      onClick={() =>
+                        (window.location.href = `/user/${id}/post/${data.id}`)
+                      }
+                    >
+                      <RightOutlined />
+                    </span>
+                  </div>
+                ),
+            )}
         </div>
         <Modal
           title="Add Post"

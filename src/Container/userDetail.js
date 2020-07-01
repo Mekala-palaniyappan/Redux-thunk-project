@@ -36,6 +36,7 @@ class UserDetail extends Component {
         deletePostLoading,
         onDelete,
         addPostLoading,
+        removedIds,
       } = this.props,
       { id } = this.state;
     if (userDetailLoading) {
@@ -50,6 +51,7 @@ class UserDetail extends Component {
         deletePostLoading={deletePostLoading}
         onDelete={onDelete}
         addPostLoading={addPostLoading}
+        removedIds={removedIds}
       />
     );
   }
@@ -59,7 +61,7 @@ const mapDispatchToProps = dispatch => ({
   userDetail: id => dispatch(getUserDetails(id)),
   addPost: (id, values) => dispatch(addPost(id, values)),
   getPost: id => dispatch(getPost()),
-  onDelete: id => dispatch(deletePost(id)),
+  onDelete: (id, ids) => dispatch(deletePost(id, ids)),
 });
 
 const mapStateToProps = state => {
@@ -69,6 +71,7 @@ const mapStateToProps = state => {
     postDetails,
     deletePostLoading,
     addPostLoading,
+    removedIds,
   } = state.User;
   return {
     userDetailData,
@@ -76,6 +79,7 @@ const mapStateToProps = state => {
     postDetails,
     deletePostLoading,
     addPostLoading,
+    removedIds,
   };
 };
 
