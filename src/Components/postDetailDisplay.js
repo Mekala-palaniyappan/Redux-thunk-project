@@ -12,7 +12,6 @@ class PostDetailDisplay extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      visible: false,
       isShow: true,
     };
   }
@@ -23,9 +22,7 @@ class PostDetailDisplay extends Component {
   };
 
   handleCancel = () => {
-    this.setState({
-      visible: false,
-    });
+    this.setModalStatus(false);
   };
 
   onShow = () => {
@@ -43,9 +40,12 @@ class PostDetailDisplay extends Component {
   };
 
   onAdd = () => {
-    this.setState({
-      visible: true,
-    });
+    this.setModalStatus(true);
+  };
+
+  setModalStatus = status => {
+    const { setModalVisible } = this.props;
+    setModalVisible(status);
   };
 
   render() {
@@ -56,8 +56,9 @@ class PostDetailDisplay extends Component {
         commentsDetails,
         getCommentsLoader,
         addCommentLoader,
+        commentModalVisible,
       } = this.props,
-      { visible, isShow } = this.state;
+      { isShow } = this.state;
     return (
       <div className="container detail">
         <div className={'header'}>
@@ -118,7 +119,7 @@ class PostDetailDisplay extends Component {
         </div>
         <Modal
           title="Add Comment"
-          visible={visible}
+          visible={commentModalVisible}
           footer={null}
           destroyOnClose={true}
           maskClosable={true}

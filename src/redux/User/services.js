@@ -60,6 +60,10 @@ export const addPost = (id, values) => dispatch => {
         payload: values,
       });
       message.success('Post Added Successfully');
+      dispatch({
+        type: actions.SET_MODAL_VISIBLE,
+        postModalVisible: false,
+      });
     })
     .catch(function(error) {
       // handle error
@@ -180,6 +184,10 @@ export const addComment = (id, values) => dispatch => {
         payload: values,
       });
       message.success('Comment Added Successfully');
+      dispatch({
+        type: actions.SET_MODAL_VISIBLE,
+        commentModalVisible: false,
+      });
     })
     .catch(function(error) {
       // handle error

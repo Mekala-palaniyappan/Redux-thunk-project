@@ -17,7 +17,6 @@ class UserDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      visible: false,
       indexId: false,
     };
   }
@@ -28,15 +27,11 @@ class UserDetails extends Component {
   };
 
   handleCancel = () => {
-    this.setState({
-      visible: false,
-    });
+    this.setModalStatus(false);
   };
 
   onAdd = () => {
-    this.setState({
-      visible: true,
-    });
+    this.setModalStatus(true);
   };
 
   onDelete = id => {
@@ -49,6 +44,11 @@ class UserDetails extends Component {
     onDelete(id, removeIds);
   };
 
+  setModalStatus = status => {
+    const { setModalVisible } = this.props;
+    setModalVisible(status);
+  };
+
   render() {
     const {
         userDetailData,
@@ -57,8 +57,9 @@ class UserDetails extends Component {
         addPostLoading,
         id,
         removedIds,
+        postModalVisible,
       } = this.props,
-      { visible, indexId } = this.state;
+      { indexId } = this.state;
     return (
       <div className="container detail">
         <div className={'header'}>
@@ -106,7 +107,7 @@ class UserDetails extends Component {
         </div>
         <Modal
           title="Add Post"
-          visible={visible}
+          visible={postModalVisible}
           footer={null}
           destroyOnClose={true}
           maskClosable={true}

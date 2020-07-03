@@ -8,6 +8,7 @@ import {
 import { connect } from 'react-redux';
 import UserDetails from '../Components/userDetails';
 import LoaderComponent from '../Components/loaderComponent';
+import actions from '../redux/User/actions';
 
 class UserDetail extends Component {
   constructor(props) {
@@ -37,6 +38,8 @@ class UserDetail extends Component {
         onDelete,
         addPostLoading,
         removedIds,
+        postModalVisible,
+        setModalVisible,
       } = this.props,
       { id } = this.state;
     if (userDetailLoading) {
@@ -52,6 +55,8 @@ class UserDetail extends Component {
         onDelete={onDelete}
         addPostLoading={addPostLoading}
         removedIds={removedIds}
+        postModalVisible={postModalVisible}
+        setModalVisible={setModalVisible}
       />
     );
   }
@@ -62,6 +67,11 @@ const mapDispatchToProps = dispatch => ({
   addPost: (id, values) => dispatch(addPost(id, values)),
   getPost: id => dispatch(getPost()),
   onDelete: (id, ids) => dispatch(deletePost(id, ids)),
+  setModalVisible: status =>
+    dispatch({
+      type: actions.SET_MODAL_VISIBLE,
+      postModalVisible: status,
+    }),
 });
 
 const mapStateToProps = state => {
@@ -72,6 +82,7 @@ const mapStateToProps = state => {
     deletePostLoading,
     addPostLoading,
     removedIds,
+    postModalVisible,
   } = state.User;
   return {
     userDetailData,
@@ -80,6 +91,7 @@ const mapStateToProps = state => {
     deletePostLoading,
     addPostLoading,
     removedIds,
+    postModalVisible,
   };
 };
 

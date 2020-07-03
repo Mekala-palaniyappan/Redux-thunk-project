@@ -15,6 +15,8 @@ const initState = {
   commentsDetails: undefined,
   addCommentLoader: false,
   removedIds: [],
+  postModalVisible: false,
+  commentModalVisible: false,
 };
 
 export default function userReducer(state = initState, action) {
@@ -198,6 +200,19 @@ export default function userReducer(state = initState, action) {
       return {
         ...state,
         addCommentLoader: false,
+      };
+    }
+
+    case actions.SET_MODAL_VISIBLE: {
+      const { postModalVisible, commentModalVisible } = action;
+      return {
+        ...state,
+        postModalVisible: [true, false].includes(postModalVisible)
+          ? postModalVisible
+          : state.postModalVisible,
+        commentModalVisible: [true, false].includes(commentModalVisible)
+          ? commentModalVisible
+          : state.commentModalVisible,
       };
     }
 

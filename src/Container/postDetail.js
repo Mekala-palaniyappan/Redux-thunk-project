@@ -8,6 +8,7 @@ import {
 import { connect } from 'react-redux';
 import LoaderComponent from '../Components/loaderComponent';
 import PostDetailDisplay from '../Components/postDetailDisplay';
+import actions from '../redux/User/actions';
 
 class PostDetail extends Component {
   constructor(props) {
@@ -39,6 +40,8 @@ class PostDetail extends Component {
         getCommentsLoader,
         addCommentLoader,
         addCommentDetail,
+        commentModalVisible,
+        setModalVisible,
       } = this.props,
       { userId, postId } = this.state;
     if (postDetailLoading) {
@@ -55,6 +58,8 @@ class PostDetail extends Component {
         getCommentsLoader={getCommentsLoader}
         addCommentLoader={addCommentLoader}
         addCommentDetail={addCommentDetail}
+        commentModalVisible={commentModalVisible}
+        setModalVisible={setModalVisible}
       />
     );
   }
@@ -65,6 +70,11 @@ const mapDispatchToProps = dispatch => ({
   getPost: id => dispatch(getPostDetails(id)),
   getComments: id => dispatch(getCommentsDetails(id)),
   addCommentDetail: (id, values) => dispatch(addComment(id, values)),
+  setModalVisible: status =>
+    dispatch({
+      type: actions.SET_MODAL_VISIBLE,
+      commentModalVisible: status,
+    }),
 });
 
 const mapStateToProps = state => {
@@ -75,6 +85,7 @@ const mapStateToProps = state => {
     commentsDetails,
     getCommentsLoader,
     addCommentLoader,
+    commentModalVisible,
   } = state.User;
   return {
     postDetailLoading,
@@ -83,6 +94,7 @@ const mapStateToProps = state => {
     commentsDetails,
     getCommentsLoader,
     addCommentLoader,
+    commentModalVisible,
   };
 };
 
